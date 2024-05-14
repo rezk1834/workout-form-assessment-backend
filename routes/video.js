@@ -1,11 +1,21 @@
 const express = require("express");
 const multer = require("multer");
 const { videoProcessing } = require("../controllers/video");
+const path = require("path");
 
 const router = express.Router();
 
 // Multer configuration
-const storage = multer.memoryStorage(); // Store the file in memory
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    // Set the destination folder for uploaded files
+    cb(null, path.join(__dirname, "../uploads"));
+  },
+  filename: function (req, file, cb) {
+    // Set the filename for uploaded files
+    cb(null, Date.now() + "-" + file.originalname);
+  },
+});
 const upload = multer({ storage: storage });
 
 router.post("/", upload.single("video"), videoProcessing);

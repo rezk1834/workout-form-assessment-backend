@@ -46,6 +46,7 @@ const videoProcessing = async (req, res) => {
               });
           }
         );
+        console.log(new_res)
         res.status(200).send(new_res);
       });
   } catch (error) {
