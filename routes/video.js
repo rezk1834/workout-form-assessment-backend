@@ -9,11 +9,11 @@ const router = express.Router();
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     // Set the destination folder for uploaded files
-    cb(null, path.join(__dirname, "../uploads"));
+    cb(null, path.join(__dirname, "..", "..", "Workout-Form-Assessment"));
   },
   filename: function (req, file, cb) {
     // Set the filename for uploaded files
-    cb(null, Date.now() + "-" + file.originalname);
+    cb(null, file.originalname);
   },
 });
 const upload = multer({ storage: storage });
