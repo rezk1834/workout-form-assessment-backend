@@ -32,10 +32,12 @@ const videoProcessing = async (req, res) => {
     }
 
     console.log(new_res);
-    res.status(200).send(new_res);
+    res
+      .status(200)
+      .send({new_res, video_path: "../Workout-Form-Assessment/" + req.file.originalname});
 
     // Optionally delete the uploaded file after processing
-    fs.unlinkSync("../Workout-Form-Assessment/" + req.file.originalname);
+    // fs.unlinkSync("../Workout-Form-Assessment/" + req.file.originalname);
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
