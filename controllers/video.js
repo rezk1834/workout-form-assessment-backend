@@ -10,7 +10,7 @@ const videoProcessing = async (req, res) => {
     }
     console.log(req.file.originalname, req.body.exercise_name);
     // Send the file to the FastAPI server
-    const response = await axios.post("http://localhost:7000/get-feedback", {
+    const response = await axios.post("http://localhost:8000/get-feedback", {
       video_path: req.file.originalname,
       exercise_name: req.body.excercise_name,
     });
